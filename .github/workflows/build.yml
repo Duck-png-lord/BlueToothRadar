@@ -18,12 +18,12 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Publish self-contained app
+      - name: Publish framework-dependent app
         run: >
           dotnet publish BluetoothRadar/BluetoothRadar.csproj
           --configuration Release
           --runtime win-x64
-          --self-contained true
+          --self-contained false
           -p:PublishSingleFile=false
 
       - name: Upload app folder
