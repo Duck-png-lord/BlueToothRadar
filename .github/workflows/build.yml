@@ -1,4 +1,4 @@
-name: Build Bluetooth Radar EXE
+name: Build Bluetooth Radar
 
 on:
   push:
@@ -18,16 +18,15 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Publish self-contained EXE
+      - name: Publish self-contained app
         run: >
           dotnet publish BluetoothRadar/BluetoothRadar.csproj
           --configuration Release
           --runtime win-x64
           --self-contained true
-          -p:PublishSingleFile=true
-          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:PublishSingleFile=false
 
-      - name: Upload published app
+      - name: Upload app folder
         uses: actions/upload-artifact@v4
         with:
           name: BluetoothRadar-windows-x64
