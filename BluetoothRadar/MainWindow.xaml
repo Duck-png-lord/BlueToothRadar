@@ -1,0 +1,72 @@
+<Window x:Class="BluetoothRadar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bluetooth Radar"
+        Width="1000"
+        Height="720"
+        MinWidth="700"
+        MinHeight="520"
+        Background="#0A1118"
+        Foreground="#E8F1EF">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,18">
+            <TextBlock Text="BLUETOOTH RADAR"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="#E8F1EF"
+                       VerticalAlignment="Center"/>
+
+            <Button x:Name="ScanButton"
+                    Content="Start scanning"
+                    Click="ScanButton_Click"
+                    Margin="22,0,0,0"
+                    Padding="18,9"
+                    Background="#1B725D"
+                    Foreground="White"
+                    BorderThickness="0"/>
+
+            <TextBlock x:Name="StatusText"
+                       Text="Ready"
+                       Margin="16,0,0,0"
+                       Foreground="#9CB2AC"
+                       VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <Border Grid.Row="1"
+                Background="#101C22"
+                BorderBrush="#20383C"
+                BorderThickness="1"
+                CornerRadius="18"
+                Padding="10">
+            <Canvas x:Name="RadarCanvas"
+                    Background="Transparent"
+                    SizeChanged="RadarCanvas_SizeChanged">
+                <Ellipse x:Name="OuterRing" Stroke="#287E70" StrokeThickness="1"/>
+                <Ellipse x:Name="MiddleRing" Stroke="#286A62" StrokeThickness="1"/>
+                <Ellipse x:Name="InnerRing" Stroke="#24554F" StrokeThickness="1"/>
+
+                <Line x:Name="HorizontalLine" Stroke="#24433F" StrokeThickness="1"/>
+                <Line x:Name="VerticalLine" Stroke="#24433F" StrokeThickness="1"/>
+
+                <Ellipse x:Name="CenterDot"
+                         Width="9" Height="9"
+                         Fill="#4DE0A8"/>
+
+                <Canvas x:Name="DeviceLayer"/>
+            </Canvas>
+        </Border>
+
+        <TextBlock Grid.Row="2"
+                   Text="BLE advertisements only • Range and device type are estimates"
+                   Margin="0,14,0,0"
+                   FontSize="12"
+                   Foreground="#829891"/>
+    </Grid>
+</Window>
